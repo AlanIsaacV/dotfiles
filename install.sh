@@ -31,7 +31,7 @@ install_dependencies() {
     local BIN=$1
 
     logit "Installing $BIN"
-    apt-get install $BIN -y
+    brew install $BIN
     step_done
 }
 
@@ -39,9 +39,9 @@ copy_files() {
     local SOURCE=$1
     local DESTINY=$2
 
-    logit "Copying $SOURCE to $DESTINY"
-    # mkdir -p $DESTINY
-    cp -vr $SOURCE $DESTINY
+    logit "Linking $SOURCE to $DESTINY"
+    mkdir -p $DESTINY
+    ln -s $SOURCE $DESTINY
     step_done
 }
 
@@ -90,11 +90,11 @@ export SHELL=/usr/bin/zsh
 chsh -s /bin/zsh
 step_done
 
-logit "Changing permission of Oh My ZSH"
-chmod -v -R 700 $OH_MY_ZSH_SRC
-step_done
+# logit "Changing permission of Oh My ZSH"
+# chmod -v -R 700 $OH_MY_ZSH_SRC
+# step_done
 
-logit "Changing group and owner"
-chown -v -R $(whoami):$(whoami) $OH_MY_ZSH_SRC
-zsh
+# logit "Changing group and owner"
+# chown -v -R $(whoami):$(whoami) $OH_MY_ZSH_SRC
+# zsh
 
