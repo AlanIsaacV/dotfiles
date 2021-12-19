@@ -43,9 +43,6 @@
 [submodule "vim-config/pack/global/start/vim-gitgutter"]
 	path = vim-config/pack/global/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
-[submodule "vim-config/pack/global/start/vim-wakatime"]
-	path = vim-config/pack/global/start/vim-wakatime
-	url = https://github.com/wakatime/vim-wakatime
 
 	# SYNTAX / AUTOCOMPLETION / HIGHLIGHT
 [submodule "vim-config/pack/syntax/start/Dockerfile.vim"]
