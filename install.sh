@@ -29,18 +29,18 @@ logger() {
     fi
 }
 
-get_package_manager() {
+set_package_manager() {
     case $(uname) in
     Linux )
         logger "OS Linux"
-        which dnf &> /dev/null && return dnf
-        which yum &> /dev/null && return yum
-        which apt-get &> /dev/null && return apt-get
+        which dnf &> /dev/null && PACK_MANAGER=dnf; return
+        which yum &> /dev/null && PACK_MANAGER=yum; return
+        which apt-get &> /dev/null && PACK_MANAGER=apt-get; return
         ;;
     Darwin )
         logger "OS MacOs"
         which brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        return brew
+        PACK_MANAGER=brew
         ;;
     * )
         logit "CRITICAL" "This script only works with Linux & Darwin (MacOs)"
@@ -48,14 +48,9 @@ get_package_manager() {
     esac
 }
 
-fetch_updates() {
-    $PACK_MANAGER update
-    logger "Get Updates"
-}
-
-install_dependencies() {
+install_dependency() {
     local BIN=$1
-    which $BIN || $PACK_MANAGER install $BIN
+    which $BIN &> /dev/null || $PACK_MANAGER install $BIN
 
     logger "Install $BIN"
 }
@@ -70,21 +65,14 @@ link_files() {
     logger "Linking $SOURCE to $DESTINY"
 }
 
-
 mkdir -p $LOG_FOLDER
-PACK_MANAGER=get_package_manager
+set_package_manager
 
-fetch_updates
+DEPENDENCIES=(git vim zsh curl wget nodejs npm python3 python3-pip)
 
-install_dependencies git
-install_dependencies vim
-install_dependencies zsh
-install_dependencies curl
-install_dependencies wget
-install_dependencies nodejs
-install_dependencies npm
-install_dependencies python3
-install_dependencies python3-pip
+for DEPENDENCY in ${DEPENDENCIES[@]}; do
+    install_dependency $DEPENDENCY
+done
 
 git submodule update --init --recursive
 logger "Get submodules"
