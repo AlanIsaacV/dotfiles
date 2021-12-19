@@ -1,60 +1,78 @@
-#!/usr/bin/sh
-CWD=$(pwd)
+#!/bin/sh
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-LOG_FILE="$CWD/install $(date +%F).log"
+LOG_FOLDER="$SCRIPTPATH/logs"
+LOG_FILE="$LOG_FOLDER/install $(date +%F).log"
 
-OH_MY_ZSH_SRC=$CWD/zsh-config/oh-my-zsh
+OH_MY_ZSH_SRC=$SCRIPTPATH/zsh-config/oh-my-zsh
 
-VIM_SRC=$CWD/vim-config
+VIM_SRC=$SCRIPTPATH/vim-config
 VIM_DST=$HOME/.vim
 
-ZSHRC_SRC=$CWD/zsh-config/zshrc
+ZSHRC_SRC=$SCRIPTPATH/zsh-config/zshrc
 ZSHRC_DST=$HOME/.zshrc
 
 CONFIG_OLD=$HOME/.config.old/
 
 logit() {
-    echo "[ $(date +'%F %X') ] - ${*}" >>$LOG_FILE
+    echo "$(date +'%F %X') [$1] - ${@:2}" >> $LOG_FILE
 }
 
-step_done() {
-    logit "Done!!\n"
+logger() {
+    local STATUS=$?
+    local MESSAGE=$1
+
+    if [ $STATUS -eq 0 ]; then
+        logit "INFO" $MESSAGE
+    else
+        logit "ERROR" "Failed: $MESSAGE"
+    fi
+}
+
+get_package_manager() {
+    case $(uname) in
+    Linux )
+        logger "OS Linux"
+        which dnf &> /dev/null && return dnf
+        which yum &> /dev/null && return yum
+        which apt-get &> /dev/null && return apt-get
+        ;;
+    Darwin )
+        logger "OS MacOs"
+        which brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        return brew
+        ;;
+    * )
+        logit "CRITICAL" "This script only works with Linux & Darwin (MacOs)"
+        ;;
+    esac
 }
 
 fetch_updates() {
-    logit "Fetching updates"
-    apt-get update
-    step_done
+    $PACK_MANAGER update
+    logger "Get Updates"
 }
 
 install_dependencies() {
     local BIN=$1
+    which $BIN || $PACK_MANAGER install $BIN
 
-    logit "Installing $BIN"
-    brew install $BIN
-    step_done
+    logger "Install $BIN"
 }
 
-copy_files() {
+link_files() {
     local SOURCE=$1
     local DESTINY=$2
 
-    logit "Linking $SOURCE to $DESTINY"
     mkdir -p $DESTINY
     ln -s $SOURCE $DESTINY
-    step_done
+
+    logger "Linking $SOURCE to $DESTINY"
 }
 
-move_files() {
-    local SOURCE=$1
-    local DESTINY=$2
 
-    logit "Moving $SOURCE to $DESTINY"
-    mv -v $SOURCE $DESTINY
-    step_done
-}
-
-echo "LOG FILE INSTALL DOTFILES AND CONFI -- $(date +'%F %X') --" >$LOG_FILE
+mkdir -p $LOG_FOLDER
+PACK_MANAGER=get_package_manager
 
 fetch_updates
 
@@ -68,33 +86,11 @@ install_dependencies npm
 install_dependencies python3
 install_dependencies python3-pip
 
-logit "Installing python jedi and pylint"
-pip3 install jedi pylint
-step_done
-
-logit "Getting submodules"
 git submodule update --init --recursive
-step_done
+logger "Get submodules"
 
-copy_files $ZSHRC_SRC $ZSHRC_DST
-copy_files $VIM_SRC $VIM_DST
+link_files $ZSHRC_SRC $ZSHRC_DST
+link_files $VIM_SRC $VIM_DST
 
-npm --prefix $CWD/coc/extensions install
-
-mkdir -p $CONFIG_OLD
-move_files $HOME/.bashrc $CONFIG_OLD
-move_files $HOME/.profile $CONFIG_OLD
-
-logit "Exporting ENV Variables"
-export SHELL=/usr/bin/zsh
-chsh -s /bin/zsh
-step_done
-
-# logit "Changing permission of Oh My ZSH"
-# chmod -v -R 700 $OH_MY_ZSH_SRC
-# step_done
-
-# logit "Changing group and owner"
-# chown -v -R $(whoami):$(whoami) $OH_MY_ZSH_SRC
-# zsh
-
+npm --prefix $SCRIPTPATH/coc/extensions install
+logger "Install coc extensions"
