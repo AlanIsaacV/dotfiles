@@ -86,7 +86,7 @@ validate_folder() {
     local FOLDER=$1
     mkdir -p $FOLDER
 
-    logger "Create folder"
+    logger "Create folder $FOLDER"
 }
 
 validate_folder ${LOG_FILE%/*}
