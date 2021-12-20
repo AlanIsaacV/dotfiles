@@ -11,6 +11,17 @@ VIM_DST="$HOME/.vim"
 ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
 ZSHRC_DST="$HOME/.zshrc"
 
+declare -A DEPENDENCIES=(
+    ["git"]="git"
+    ["vim"]="vim"
+    ["zsh"]="zsh"
+    ["curl"]="curl"
+    ["wget"]="wget"
+    ["node"]="nodejs"
+    ["npm"]="npm"
+    ["python3"]="python3"
+)
+
 logit() {
     echo "$(date +'%F %X') [$1] - ${@:2}" >>${LOG_FILE}
 }
@@ -53,6 +64,16 @@ install_dependency() {
     logger "Install $BIN"
 }
 
+install_dependency_git() {
+    local REPOSITORY=$1
+    local DIRECTORY=$2
+    local INSTALL_FILE=$3
+
+    git clone --depth 1 $REPOSITORY $DIRECTORY 
+    "$DIRECTORY/$INSTALL_FILE"
+    logger "Installing $(basename ${REPOSITORY%.git})"
+}
+
 link_files() {
     local SOURCE=$1
     local DESTINY=$2
@@ -71,17 +92,6 @@ validate_folder() {
 validate_folder ${LOG_FILE%/*}
 set_package_manager
 
-declare -A DEPENDENCIES=(
-    ["git"]="git"
-    ["vim"]="vim"
-    ["zsh"]="zsh"
-    ["curl"]="curl"
-    ["wget"]="wget"
-    ["node"]="nodejs"
-    ["npm"]="npm"
-    ["python3"]="python3"
-)
-
 for DEPENDENCY in ${!DEPENDENCIES[@]}; do
     install_dependency ${DEPENDENCY} ${DEPENDENCIES[$DEPENDENCY]}
 done
@@ -95,5 +105,18 @@ link_files $OH_MY_ZSH_SRC $OH_MY_ZSH_DST
 link_files $ZSHRC_SRC $ZSHRC_DST
 link_files $VIM_SRC $VIM_DST
 
-npm --prefix $SCRIPT_PATH/coc/extensions install
+install_dependency_git https://github.com/junegunn/fzf.git $HOME/.fzf install
+install_dependency_git https://github.com/wting/autojump.git $HOME/.autojump install.py
+
+python3 -m ensurepip --upgrade
+python3 get-pip.py
+logger "Get/Update pip"
+
+python3 -m pip install --upgrade wheel
+pip3 install --user httpie pygments
+logger "Install utilities from Python"
+
+npm --prefix "$SCRIPT_PATH/coc/extensions install"
 logger "Install coc extensions"
+
+chsh -s $(grep -m 1 bash /etc/shells)
