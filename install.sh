@@ -1,21 +1,18 @@
-#!/bin/sh
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#!/usr/bin/env bash
+SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+LOG_FILE="$SCRIPT_PATH/logs/install_$(date +%F).log"
 
-LOG_FOLDER="$SCRIPTPATH/logs"
-LOG_FILE="$LOG_FOLDER/install $(date +%F).log"
+OH_MY_ZSH_SRC="$SCRIPT_PATH/zsh-config"
+OH_MY_ZSH_DST="$HOME/.config"
 
-OH_MY_ZSH_SRC=$SCRIPTPATH/zsh-config/oh-my-zsh
+VIM_SRC="$SCRIPT_PATH/vim-config"
+VIM_DST="$HOME/.vim"
 
-VIM_SRC=$SCRIPTPATH/vim-config
-VIM_DST=$HOME/.vim
-
-ZSHRC_SRC=$SCRIPTPATH/zsh-config/zshrc
-ZSHRC_DST=$HOME/.zshrc
-
-CONFIG_OLD=$HOME/.config.old/
+ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
+ZSHRC_DST="$HOME/.zshrc"
 
 logit() {
-    echo "$(date +'%F %X') [$1] - ${@:2}" >> $LOG_FILE
+    echo "$(date +'%F %X') [$1] - ${@:2}" >>${LOG_FILE}
 }
 
 logger() {
@@ -50,7 +47,8 @@ set_package_manager() {
 
 install_dependency() {
     local BIN=$1
-    which $BIN &> /dev/null || $PACK_MANAGER install $BIN
+    local PACKAGE=$2
+    which $BIN &> /dev/null || sudo $PACK_MANAGER install $PACKAGE
 
     logger "Install $BIN"
 }
@@ -58,27 +56,44 @@ install_dependency() {
 link_files() {
     local SOURCE=$1
     local DESTINY=$2
-
-    mkdir -p $DESTINY
     ln -s $SOURCE $DESTINY
 
-    logger "Linking $SOURCE to $DESTINY"
+    logger "Sym link from $SOURCE to $DESTINY"
 }
 
-mkdir -p $LOG_FOLDER
+validate_folder() {
+    local FOLDER=$1
+    mkdir -p $FOLDER
+
+    logger "Create folder"
+}
+
+validate_folder ${LOG_FILE%/*}
 set_package_manager
 
-DEPENDENCIES=(git vim zsh curl wget nodejs npm python3 python3-pip)
+declare -A DEPENDENCIES=(
+    ["git"]="git"
+    ["vim"]="vim"
+    ["zsh"]="zsh"
+    ["curl"]="curl"
+    ["wget"]="wget"
+    ["node"]="nodejs"
+    ["npm"]="npm"
+    ["python3"]="python3"
+)
 
-for DEPENDENCY in ${DEPENDENCIES[@]}; do
-    install_dependency $DEPENDENCY
+for DEPENDENCY in ${!DEPENDENCIES[@]}; do
+    install_dependency ${DEPENDENCY} ${DEPENDENCIES[$DEPENDENCY]}
 done
 
 git submodule update --init --recursive
 logger "Get submodules"
 
+validate_folder ${OH_MY_ZSH_DST%/*}
+
+link_files $OH_MY_ZSH_SRC $OH_MY_ZSH_DST
 link_files $ZSHRC_SRC $ZSHRC_DST
 link_files $VIM_SRC $VIM_DST
 
-npm --prefix $SCRIPTPATH/coc/extensions install
+npm --prefix $SCRIPT_PATH/coc/extensions install
 logger "Install coc extensions"
