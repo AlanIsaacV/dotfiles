@@ -3,7 +3,7 @@ SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 LOG_FILE="$SCRIPT_PATH/logs/install_$(date +%F).log"
 
 OH_MY_ZSH_SRC="$SCRIPT_PATH/zsh-config"
-OH_MY_ZSH_DST="$HOME/.config"
+OH_MY_ZSH_DST="$HOME/.config/"
 
 VIM_SRC="$SCRIPT_PATH/vim-config"
 VIM_DST="$HOME/.vim"
