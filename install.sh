@@ -8,6 +8,9 @@ OH_MY_ZSH_DST="$HOME/.config/"
 VIM_SRC="$SCRIPT_PATH/vim-config"
 VIM_DST="$HOME/.vim"
 
+GIT_SRC="$SCRIPT_PATH/git/gitonfig"
+GIT_DST="$HOME/.gitonfig"
+
 ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
 ZSHRC_DST="$HOME/.zshrc"
 
@@ -69,7 +72,7 @@ install_dependency_git() {
     local DIRECTORY=$2
     local INSTALL_FILE=$3
 
-    git clone --depth 1 $REPOSITORY $DIRECTORY 
+    git clone --depth 1 $REPOSITORY $DIRECTORY
     "$DIRECTORY/$INSTALL_FILE"
     logger "Installing $(basename ${REPOSITORY%.git})"
 }
@@ -77,7 +80,7 @@ install_dependency_git() {
 link_files() {
     local SOURCE=$1
     local DESTINY=$2
-    ln -s $SOURCE $DESTINY
+    ln -sf $SOURCE $DESTINY
 
     logger "Sym link from $SOURCE to $DESTINY"
 }
@@ -104,6 +107,7 @@ validate_folder ${OH_MY_ZSH_DST%/*}
 link_files $OH_MY_ZSH_SRC $OH_MY_ZSH_DST
 link_files $ZSHRC_SRC $ZSHRC_DST
 link_files $VIM_SRC $VIM_DST
+link_files $GIT_SRC $GIT_DST
 
 install_dependency_git https://github.com/junegunn/fzf.git $HOME/.fzf install
 install_dependency_git https://github.com/wting/autojump.git $HOME/.autojump install.py
@@ -116,7 +120,7 @@ python3 -m pip install --upgrade wheel
 pip3 install --user httpie pygments
 logger "Install utilities from Python"
 
-npm --prefix "$SCRIPT_PATH/coc/extensions install"
+npm --prefix "$SCRIPT_PATH/coc/extensions" install
 logger "Install coc extensions"
 
-chsh -s $(grep -m 1 bash /etc/shells)
+chsh -s $(grep -m 1 zsh /etc/shells)
