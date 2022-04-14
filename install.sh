@@ -8,7 +8,7 @@ OH_MY_ZSH_DST="$HOME/.config/"
 VIM_SRC="$SCRIPT_PATH/vim-config"
 VIM_DST="$HOME/.vim"
 
-GIT_SRC="$SCRIPT_PATH/git/gitonfig"
+GIT_SRC="$SCRIPT_PATH/git/gitconfig"
 GIT_DST="$HOME/.gitonfig"
 
 ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
@@ -23,6 +23,9 @@ declare -A DEPENDENCIES=(
     ["node"]="nodejs"
     ["npm"]="npm"
     ["python3"]="python3"
+    ["exa"]="exa"
+    ["go"]="go"
+    ["tree"]="tree"
 )
 
 logit() {
@@ -44,9 +47,9 @@ set_package_manager() {
     case $(uname) in
     Linux )
         logger "OS Linux"
-        which dnf &> /dev/null && PACK_MANAGER=dnf; return
-        which yum &> /dev/null && PACK_MANAGER=yum; return
-        which apt-get &> /dev/null && PACK_MANAGER=apt-get; return
+        which dnf &> /dev/null && PACK_MANAGER="sudo dnf"; return
+        which yum &> /dev/null && PACK_MANAGER="sudo yum"; return
+        which apt-get &> /dev/null && PACK_MANAGER="sudo apt-get"; return
         ;;
     Darwin )
         logger "OS MacOs"
@@ -62,7 +65,7 @@ set_package_manager() {
 install_dependency() {
     local BIN=$1
     local PACKAGE=$2
-    which $BIN &> /dev/null || sudo $PACK_MANAGER install $PACKAGE
+    which $BIN &> /dev/null || $PACK_MANAGER install $PACKAGE
 
     logger "Install $BIN"
 }
@@ -110,7 +113,7 @@ link_files $VIM_SRC $VIM_DST
 link_files $GIT_SRC $GIT_DST
 
 install_dependency_git https://github.com/junegunn/fzf.git $HOME/.fzf install
-install_dependency_git https://github.com/wting/autojump.git $HOME/.autojump install.py
+install_dependency_git https://github.com/wting/autojump.git /tmp/.autojump install.py
 
 python3 -m ensurepip --upgrade
 python3 get-pip.py

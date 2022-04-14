@@ -81,9 +81,7 @@ plugins=(
    colored-man-pages # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
    colorize # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
    common-aliases # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-   copybuffer # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer
-   copydir # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copydir
-   copyfile # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copyfile
+   conda # https://github.com/esc/conda-zsh-completion
    docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
    extract # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract
    fzf # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf
@@ -92,8 +90,6 @@ plugins=(
    pip # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
    safe-paste # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/safe-paste
    sudo # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
-   systemadmin # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemadmin
-   zsh-navigation-tools # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-navigation-tools
 
    # Third-party
    zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions
@@ -102,22 +98,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
-else
-   export EDITOR='mvim'
-fi
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
+export EDITOR='vim'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -147,22 +133,22 @@ if [ -f $ALIAS_HOST_PATH ]; then
    . $ALIAS_HOST_PATH
 fi
 
-# Export DISPLAY for remote connections
-XSERVER=`who -m | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'`
-[ -n "$XSERVER" ] && export DISPLAY="$XSERVER:0.0"
-
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh-config/customs/themes/p10k.zsh.
 [[ ! -f ~/.config/zsh-config/customs/themes/p10k.zsh ]] || source ~/.config/zsh-config/customs/themes/p10k.zsh
 
 # PLUGINS CONFIG
-   # autojump
-[ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
-[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
    # Colorize
+ZSH_COLORIZE_TOOL=pygmentize
 ZSH_COLORIZE_STYLE="material"
 
    # fzf
 FZF_BASE="$HOME/.fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Extend rc
+EXTEND_RC="$HOME/.config/zsh/zshrc"
+if [ -f $EXTEND_RC ]; then
+    source $EXTEND_RC
+fi
+

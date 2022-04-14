@@ -1,23 +1,9 @@
 # General Alias
-alias ll='ls -lA'
-# alias python=python3
-# alias pip=pip3
-# alias mount_d="sudo mkdir -p /mnt/d && sudo mount -t drvfs D: /mnt/d -o metadata"
-# alias umount_d="sudo umount /mnt/d"
-
-
-# ZSH
-	# zsh navigation
-alias aliases='n-aliases'
-alias history='n-history'
-alias printenv='n-env'
-alias cdh='n-cd'
-	# Colorized
-alias cat='ccat'
-alias less='cless' 
+alias l='exa --long --header --all --group-directories-first --icons'
+alias lt='l --tree'
+alias lg='l --git'
 
 # Docker
-alias aws='docker run --rm -it -v aws-vol:/root/.aws amazon/aws-cli'
 alias mongo='docker run --rm -ti mongo mongo --host'
 alias psql='docker run --rm -ti postgres psql'
 alias pgadmin="docker run --rm -d \
