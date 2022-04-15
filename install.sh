@@ -9,7 +9,7 @@ VIM_SRC="$SCRIPT_PATH/vim-config"
 VIM_DST="$HOME/.vim"
 
 GIT_SRC="$SCRIPT_PATH/git/gitconfig"
-GIT_DST="$HOME/.gitonfig"
+GIT_DST="$HOME/.gitconfig"
 
 ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
 ZSHRC_DST="$HOME/.zshrc"
