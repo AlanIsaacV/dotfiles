@@ -143,8 +143,13 @@ ZSH_COLORIZE_STYLE="material"
 
    # fzf
 FZF_BASE="$HOME/.fzf"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+FZF_RC="$HOME/.fzf.zsh"
+[ -f $FZF_RC ] && source $FZF_RC
 
+    # autojump
+AUTOJUMP_PROFILE="$HOME/.autojump/etc/profile.d/autojump.sh"
+[[ -s $AUTOJUMP_PROFILE ]] && source $AUTOJUMP_PROFILE
+autoload -U compinit && compinit -u
 
 # Extend rc
 EXTEND_RC="$HOME/.config/zsh/zshrc"

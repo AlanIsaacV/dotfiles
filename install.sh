@@ -14,6 +14,9 @@ GIT_DST="$HOME/.gitonfig"
 ZSHRC_SRC="$SCRIPT_PATH/zsh-config/zshrc"
 ZSHRC_DST="$HOME/.zshrc"
 
+ALIAS_SRC="$SCRIPT_PATH/bash/bash_aliases"
+ALIAS_DST="$HOME/.bash_aliases"
+
 declare -A DEPENDENCIES=(
     ["git"]="git"
     ["vim"]="vim"
@@ -111,6 +114,7 @@ link_files $OH_MY_ZSH_SRC $OH_MY_ZSH_DST
 link_files $ZSHRC_SRC $ZSHRC_DST
 link_files $VIM_SRC $VIM_DST
 link_files $GIT_SRC $GIT_DST
+link_files $ALIAS_SRC $ALIAS_DST
 
 install_dependency_git https://github.com/junegunn/fzf.git $HOME/.fzf install
 install_dependency_git https://github.com/wting/autojump.git /tmp/.autojump install.py
