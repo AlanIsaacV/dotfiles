@@ -2,9 +2,34 @@
   defaultBranch = main
 
 [user]
-  email = {ID}+{username}@users.noreply.github.com
+  email = 50334817+AlanVazquez99@users.noreply.github.com
   user = AlanVazquez99
   name = Alan Vazquez
+  signingKey = 50334817+AlanVazquez99@users.noreply.github.com
 
 [alias]
-  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg = log --graph \
+    --abbrev-commit \
+    --decorate \
+    --all \
+    --format=format:'\
+%C(bold blue)%h%C(reset) \
+%C(bold green)(%ar)%C(reset)\
+%C(white)% s%C(reset) \
+%C(dim white)- %an%C(reset)\
+%C(bold yellow)% d%C(reset) \
+%C(dim cyan)[%G?% GT]%C(reset)\
+'
+
+[sequence]
+  editor = code --wait
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+[includeIf "gitdir:~/Work/Trii/"]
+  path = ~/Work/Trii/.gitconfig
+
