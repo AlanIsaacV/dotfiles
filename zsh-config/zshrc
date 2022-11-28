@@ -75,21 +75,27 @@ ZSH_CUSTOM="$ZSH/../customs"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
+export plugins=(
    # Include
    autojump # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump
    colored-man-pages # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
    colorize # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+   command-not-found  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found
    common-aliases # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-   conda # https://github.com/esc/conda-zsh-completion
+   copybuffer  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/copybuffer
+   direnv  # https://github.com/direnv/direnv
    docker # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
    extract # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract
+   fancy-ctrl-z  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fancy-ctrl-z
+   fd  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fd
    fzf # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf
+   git  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git#functions
    gitignore # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gitignore
    httpie # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/httpie
    pip # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pip
    safe-paste # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/safe-paste
    sudo # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+   systemadmin # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemadmin
 
    # Third-party
    zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions
@@ -156,4 +162,3 @@ EXTEND_RC="$HOME/.config/zsh/zshrc"
 if [ -f $EXTEND_RC ]; then
     source $EXTEND_RC
 fi
-
