@@ -11,3 +11,4 @@ bash/.profile
 bash/.bashrc
 
 *.log
+.DS_Store
