@@ -2,6 +2,7 @@
 alias l='exa --long --header --all --group-directories-first --icons'
 alias lt='l --tree'
 alias lg='l --git'
+alias rsync='rsync -avzhProg --ignore-existing'
 
 # Docker
 alias mongo='docker run --rm -ti mongo mongo --host'
@@ -15,5 +16,3 @@ alias pgadmin="docker run --rm -d \
 	dpage/pgadmin4 \
 	&& echo -e '\nURL: \t\t http://localhost:5050 \n\nEMAIL: \t\t admin@pgadmin.com \nPASSWORD: \t admin' "
 alias notebook='docker run --rm --name notebook -p 8888:8888 -d jupyter/base-notebook && sleep 1.5 && docker logs --tail 5 notebook'
-
-
