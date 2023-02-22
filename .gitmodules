@@ -57,38 +57,12 @@
 [submodule "vim-config/pack/syntax/start/csv.vim"]
 	path = vim-config/pack/syntax/start/csv.vim
 	url = https://github.com/chrisbra/csv.vim
-[submodule "vim-config/pack/syntax/start/html5.vim"]
-	path = vim-config/pack/syntax/start/html5.vim
-	url = https://github.com/sheerun/html5.vim
-[submodule "vim-config/pack/syntax/start/pgsql.vim"]
-	path = vim-config/pack/syntax/start/pgsql.vim
-	url = https://github.com/lifepillar/pgsql.vim
-[submodule "vim-config/pack/syntax/start/python-syntax"]
-	path = vim-config/pack/syntax/start/python-syntax
-	url = https://github.com/vim-python/python-syntax
-[submodule "vim-config/pack/syntax/start/vim-javascript"]
-	path = vim-config/pack/syntax/start/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
 [submodule "vim-config/pack/syntax/start/vim-json"]
 	path = vim-config/pack/syntax/start/vim-json
 	url = https://github.com/elzr/vim-json
-[submodule "vim-config/pack/syntax/start/vim-markdown"]
-	path = vim-config/pack/syntax/start/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown
-[submodule "vim-config/pack/syntax/start/vim-python-pep8-indent"]
-	path = vim-config/pack/syntax/start/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent
 [submodule "vim-config/pack/syntax/start/vim-sh"]
 	path = vim-config/pack/syntax/start/vim-sh
 	url = https://github.com/arzg/vim-sh
-[submodule "vim-config/pack/syntax/start/vim-stylus"]
-	path = vim-config/pack/syntax/start/vim-stylus
-	url = https://github.com/wavded/vim-stylus
-[submodule "vim-config/pack/syntax/start/vim-xml"]
-	path = vim-config/pack/syntax/start/vim-xml
-	url = https://github.com/amadeus/vim-xml
-
-	# THEMES
 [submodule "vim-config/pack/themes/start/vim-airline"]
 	path = vim-config/pack/themes/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
