@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+SCRIPT_PATH="$(
+    cd -- "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)"
 LOG_FILE="$SCRIPT_PATH/logs/install_$(date +%F).log"
 
 OH_MY_ZSH_SRC="$SCRIPT_PATH/zsh-config"
@@ -18,17 +21,12 @@ ALIAS_SRC="$SCRIPT_PATH/bash/bash_aliases"
 ALIAS_DST="$HOME/.bash_aliases"
 
 declare -A DEPENDENCIES=(
-    ["git"]="git"
     ["vim"]="vim"
     ["zsh"]="zsh"
-    ["curl"]="curl"
-    ["wget"]="wget"
-    ["node"]="nodejs"
     ["npm"]="npm"
     ["python3"]="python3"
     ["exa"]="exa"
-    ["go"]="go"
-    ["tree"]="tree"
+    ["autojump"]="autojump"
 )
 
 logit() {
@@ -48,18 +46,21 @@ logger() {
 
 set_package_manager() {
     case $(uname) in
-    Linux )
+    Linux)
         logger "OS Linux"
-        which dnf &> /dev/null && PACK_MANAGER="sudo dnf"; return
-        which yum &> /dev/null && PACK_MANAGER="sudo yum"; return
-        which apt-get &> /dev/null && PACK_MANAGER="sudo apt-get"; return
+        which dnf &>/dev/null && PACK_MANAGER="sudo dnf"
+        return
+        which yum &>/dev/null && PACK_MANAGER="sudo yum"
+        return
+        which apt-get &>/dev/null && PACK_MANAGER="sudo apt-get"
+        return
         ;;
-    Darwin )
+    Darwin)
         logger "OS MacOs"
-        which brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        which brew &>/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         PACK_MANAGER=brew
         ;;
-    * )
+    *)
         logit "CRITICAL" "This script only works with Linux & Darwin (MacOs)"
         ;;
     esac
@@ -68,7 +69,7 @@ set_package_manager() {
 install_dependency() {
     local BIN=$1
     local PACKAGE=$2
-    which $BIN &> /dev/null || $PACK_MANAGER install $PACKAGE
+    which $BIN &>/dev/null || $PACK_MANAGER install $PACKAGE
 
     logger "Install $BIN"
 }
@@ -117,14 +118,10 @@ link_files $GIT_SRC $GIT_DST
 link_files $ALIAS_SRC $ALIAS_DST
 
 install_dependency_git https://github.com/junegunn/fzf.git $HOME/.fzf install
-install_dependency_git https://github.com/wting/autojump.git /tmp/.autojump install.py
-
-python3 -m ensurepip --upgrade
-python3 get-pip.py
-logger "Get/Update pip"
 
 python3 -m pip install --upgrade wheel
-pip3 install --user httpie pygments
+pip install -U pip
+pip install --user httpie pygments
 logger "Install utilities from Python"
 
 npm --prefix "$SCRIPT_PATH/coc/extensions" install
