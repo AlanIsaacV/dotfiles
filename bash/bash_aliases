@@ -4,16 +4,4 @@ alias lt='l --tree'
 alias lg='l --git'
 
 alias rsync='rsync -avzhProg --ignore-existing'
-
-# Docker
-alias mongo='docker run --rm -ti mongo mongo --host'
-alias psql='docker run --rm -ti postgres psql'
-alias pgadmin="docker run --rm -d \
-	--name pgadmin \
-	-v pgadmin-vol:/var/lib/pgadmin \
-	-p 5050:80 \
-	-e PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com \
-	-e PGADMIN_DEFAULT_PASSWORD=admin \
-	dpage/pgadmin4 \
-	&& echo -e '\nURL: \t\t http://localhost:5050 \n\nEMAIL: \t\t admin@pgadmin.com \nPASSWORD: \t admin' "
-alias notebook='docker run --rm --name notebook -p 8888:8888 -d jupyter/base-notebook && sleep 1.5 && docker logs --tail 5 notebook'
+alias mem_free='sudo sh -c "free -h; sudo echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a; free -h"'
