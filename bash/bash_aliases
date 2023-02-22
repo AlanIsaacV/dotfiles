@@ -1,7 +1,8 @@
 # General Alias
-alias l='exa --long --header --all --group-directories-first --icons'
+alias l='exa --long --header --group --all --group-directories-first --icons'
 alias lt='l --tree'
 alias lg='l --git'
+
 alias rsync='rsync -avzhProg --ignore-existing'
 
 # Docker
