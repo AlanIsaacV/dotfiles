@@ -5,3 +5,7 @@ alias lg='l --git'
 
 alias rsync='rsync -avzhProg --ignore-existing'
 alias mem_free='sudo sh -c "free -h; sudo echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a; free -h"'
+
+alias mount='sudo mount'
+alias umount='sudo umount'
+
