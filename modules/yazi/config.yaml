@@ -7,6 +7,6 @@ packages:
       manager: brew
 dotfiles:
   - source: dotfiles/function.fish
-    destination: ~/.config/fish/functions/yazi-y.fish
+    destination: ~/.config/fish/functions/y.fish
   - source: dotfiles/catppuccin-frappe-sky.toml
     destination: ~/.config/yazi/theme.toml
