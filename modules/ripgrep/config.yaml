@@ -1,0 +1,7 @@
+name: ripgrep
+description: Recurive search tool
+dependencies: []
+packages:
+    common:
+        - ripgrep
+dotfiles: []

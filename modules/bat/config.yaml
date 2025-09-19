@@ -1,0 +1,13 @@
+name: bat
+description: cat with sintax highlighting
+dependencies: []
+packages:
+  common:
+    - bat
+dotfiles:
+  - source: dotfiles/Catppuccin Frappe.tmTheme
+    destination: ~/.config/bat/themes/Catppuccin Frappe.tmTheme
+  - source: dotfiles/config
+    destination: ~/.config/bat/config
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/bat.fish

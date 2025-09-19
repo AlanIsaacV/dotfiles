@@ -1,0 +1,11 @@
+name: starship
+description: shell prompt
+dependencies: []
+packages:
+  common:
+    - starship
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/starship.fish
+  - source: dotfiles/config.toml
+    destination: ~/.config/starship.toml

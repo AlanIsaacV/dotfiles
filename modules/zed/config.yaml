@@ -1,0 +1,8 @@
+name: zed
+description: Code editor
+dependencies: []
+dotfiles:
+  - source: dotfiles/keymap.json
+    destination: ~/.config/zed/keymap.json
+  - source: dotfiles/settings.json
+    destination: ~/.config/zed/settings.json

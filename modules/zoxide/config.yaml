@@ -1,0 +1,13 @@
+name: zoxide
+description: smarter cd command
+dependencies: []
+packages:
+  specific:
+    - name: zoxide
+      manager: brew
+commands:
+  - command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    os: apt
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/zoxide.fish

@@ -1,0 +1,15 @@
+name: eza
+description: ls replacement
+dependencies: []
+packages:
+  specific:
+    - name: eza
+      manager: brew
+commands:
+  - command: install_deb.sh
+    os: apt
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/eza.fish
+  - source: dotfiles/theme.yml
+    destination: ~/.config/eza/theme.yml

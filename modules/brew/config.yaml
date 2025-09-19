@@ -1,0 +1,9 @@
+name: brew
+description: MacOS package manager
+dependencies: []
+commands:
+  - command: sudo NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    os: ""
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/brew.fish

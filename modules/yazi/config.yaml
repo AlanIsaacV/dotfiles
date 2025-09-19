@@ -1,0 +1,12 @@
+name: yazi
+description: terminal file manager
+dependencies: []
+packages:
+  specific:
+    - name: yazi
+      manager: brew
+dotfiles:
+  - source: dotfiles/function.fish
+    destination: ~/.config/fish/functions/yazi-y.fish
+  - source: dotfiles/catppuccin-frappe-sky.toml
+    destination: ~/.config/yazi/theme.toml

@@ -1,0 +1,10 @@
+name: ghostty
+description: Best terminal emulator
+dependencies: []
+packages:
+  specific:
+    - name: cask ghostty
+      manager: brew
+dotfiles:
+  - source: dotfiles/config
+    destination: ~/Library/Application Support/com.mitchellh.ghostty/config

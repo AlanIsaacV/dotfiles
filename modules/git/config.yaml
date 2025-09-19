@@ -1,0 +1,9 @@
+name: git
+description: Git config
+dependencies: []
+packages:
+    common:
+        - git
+dotfiles:
+    - source: dotfiles/gitconfig
+      destination: ~/.gitconfig

@@ -1,0 +1,12 @@
+name: fd
+description: user-friendly alternative to 'find'
+dependencies: []
+packages:
+  specific:
+    - name: fd
+      manager: brew
+    - name: fd-find
+      manager: apt
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/fd.fish

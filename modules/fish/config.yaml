@@ -1,0 +1,9 @@
+name: fish
+description: fish shell
+dependencies: []
+packages:
+  common:
+    - fish
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/config.fish

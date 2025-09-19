@@ -1,0 +1,8 @@
+name: ssh
+description: ssh Config
+dependencies: []
+dotfiles:
+  - source: dotfiles/config
+    destination: .ssh/config
+  - source: dotfiles/gcp_conn.sh
+    destination: .ssh/scripts/gcp_conn.sh

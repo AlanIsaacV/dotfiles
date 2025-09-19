@@ -1,0 +1,46 @@
+[init]
+  defaultBranch = main
+
+[user]
+  email = 50334817+AlanIsaacV@users.noreply.github.com
+  user = AlanVazquez99
+  name = Alan Vazquez
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFC6/XWqDzy3Bcz2E5MppB6jji2HJMRVC6bEa1PpTpLF
+
+[alias]
+  lg = log --graph \
+    --abbrev-commit \
+    --decorate \
+    --all \
+    --format=format:'\
+%C(bold blue)%h%C(reset) \
+%C(bold green)(%ar)%C(reset)\
+%C(white)% s%C(reset) \
+%C(yellow)%D%C(reset) \
+%C(dim white)- %an%C(reset) \
+%C(dim cyan)[%G?]%C(reset)\
+'
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[core]
+	autocrlf = input
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

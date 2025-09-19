@@ -1,0 +1,11 @@
+name: uv
+description: Python package manager
+dependencies: []
+packages:
+  specific:
+    - name: uv
+      manager: brew
+commands:
+  - command: curl -LsSf https://astral.sh/uv/install.sh | sh
+    os: apt
+dotfiles: []

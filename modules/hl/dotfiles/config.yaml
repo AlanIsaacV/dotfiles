@@ -1,0 +1,17 @@
+theme: "ayu-mirage-24"
+
+fields:
+  # Configuration of the predefined set of fields.
+  predefined:
+    time:
+      show: auto
+      names: ["timestamp"]
+    level:
+      show: auto
+      variants:
+        - names: ["level", "severity"]
+          values:
+            debug: ["debug", "trace"]
+            info: ["info"]
+            warning: ["warning", "warn"]
+            error: ["error", "critical", "fatal", "panic"]

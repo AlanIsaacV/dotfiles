@@ -1,0 +1,11 @@
+name: gcloud
+description: Google Cloud Platform CLI
+dependencies: []
+commands:
+  - command: ./install_macos.sh
+    os: brew
+  - command: ./install_debian.sh
+    os: apt
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/gcloud.fish

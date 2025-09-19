@@ -1,0 +1,13 @@
+name: hl
+description: JSON-logs reader
+dependencies: []
+packages:
+  specific:
+    - name: hl
+      manager: brew
+commands:
+  - command: curl -sSfL https://github.com/pamburus/hl/releases/latest/download/hl-linux-x86_64-musl.tar.gz | tar xz
+    os: apt
+dotfiles:
+  - source: dotfiles/config.yaml
+    destination: ~/.config/hl/config.yaml

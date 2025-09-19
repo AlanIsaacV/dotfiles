@@ -1,0 +1,325 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](color_surface1)\
+$os\
+[](fg:prev_bg bg:color_surface2)\
+$username$hostname\
+[](fg:prev_bg bg:color_surface3)\
+$directory\
+[](fg:prev_bg bg:color_surface4)\
+$git_branch$git_commit$git_status\
+[](fg:prev_bg)\
+$fill\
+([](color_surface4)\
+[$terraform$aws$gcloud$azure](bg:color_surface4)\
+[](fg:color_surface3 bg:color_surface4)\
+[$time$jobs](bg:color_surface3)\
+[](fg:color_surface2 bg:color_surface3)\
+[$memory_usage$cmd_duration](bg:color_surface2)\
+([](fg:color_surface1 bg:color_surface2)\
+[ $docker_context$golang$java$kotlin$nodejs$python$rust ](bg:color_surface1 fg:color_surface0))\
+[▓▒░](prev_bg)\
+)\
+$line_break\
+$character
+"""
+
+palette = "catppuccin_frappe"
+add_newline = true
+
+[fill]
+symbol = ' '
+
+[palettes.catppuccin_frappe]
+color_red = "#e78284"
+color_peach = "#ef9f76"
+color_yellow = "#e5c890"
+color_green = "#a6d189"
+color_teal = "#81c8be"
+color_blue = "#8caaee"
+color_surface0 = "#303446"
+color_surface1 = "#baccf4"
+color_surface2 = "#6276a6"
+color_surface3 = "#465577"
+color_surface4 = "#38445f"
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:color_green)'
+error_symbol = '[](bold fg:color_red)'
+vimcmd_symbol = '[](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
+vimcmd_replace_symbol = '[](bold fg:color_purple)'
+vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+
+
+[os]
+disabled = false
+style = "bg:color_surface1"
+format = "[ $symbol ]($style)"
+
+[os.symbols]
+Windows = "[](bg:color_surface1 fg:color_blue)"
+Ubuntu = "[](bg:color_surface1 fg:color_peach)"
+Raspbian = "[󰐿](bg:color_surface1 fg:color_red)"
+Mint = "[󰣭](bg:color_surface1 fg:color_green)"
+Macos = "[󰀵](bg:color_surface1 fg:color_surface0)"
+Linux = "[󰌽](bg:color_surface1 fg:color_surface0)"
+Fedora = "[󰣛](bg:color_surface1 fg:color_red)"
+Alpine = "[](bg:color_surface1 fg:color_teal)"
+Amazon = "[](bg:color_surface1 fg:color_peach)"
+Android = "[](bg:color_surface1 fg:color_green)"
+Arch = "[󰣇](bg:color_surface1 fg:color_blue)"
+CentOS = "[](bg:color_surface1 fg:color_blue)"
+Debian = "[󰣚](bg:color_surface1 fg:color_red)"
+Redhat = "[󱄛](bg:color_surface1 fg:color_red)"
+
+
+[username]
+style_user = "bg:prev_bg"
+style_root = "bg:prev_bg bold"
+format = '[  $user ]($style)'
+show_always = false
+
+[hostname]
+ssh_symbol = ""
+style = "bg:prev_bg fg:color_surface0"
+format = "[$ssh_symbol $hostname]($style)"
+ssh_only = true
+
+
+[directory]
+style = "bg:prev_bg"
+read_only_style = "bg:prev_bg fg:color_red"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+read_only = "󰌾 "
+
+
+[git_branch]
+symbol = ""
+style = "bg:prev_bg"
+format = '[ $symbol $branch ]($style)'
+
+[git_commit]
+style = "bg:prev_bg"
+format = "[($tag) ]($style)"
+
+[git_status]
+up_to_date = ''
+conflicted = '[!==](bg:prev_bg fg:color_red)'
+diverged = '[⇕](bg:prev_bg fg:color_red)'
+ahead = '[⇡](bg:prev_bg fg:color_green)'
+behind ='[⇣](bg:prev_bg fg:color_teal)'
+untracked = '[?](bg:prev_bg fg:color_red)'
+stashed = '[*](bg:prev_bg fg:color_blue)'
+modified = '[!](bg:prev_bg fg:color_peach)'
+staged = '[+](bg:prev_bg fg:color_peach)'
+renamed = '[»](bg:prev_bg fg:color_peach)'
+deleted = '[✘](bg:prev_bg fg:color_peach)'
+
+format = "$all_status$ahead_behind"
+
+
+[jobs]
+symbol = "󰆅"
+format = " $symbol( $number) "
+
+
+[cmd_duration]
+format = "  $duration "
+
+[memory_usage]
+threshold = 0
+symbol = "󰍛"
+format = " $symbol ${ram} "
+disabled = true
+
+
+[docker_context]
+symbol = ""
+format = '$symbol( $context)'
+
+[golang]
+symbol = ""
+format = '$symbol( $version)'
+
+[java]
+symbol = ""
+format = '$symbol( $version)'
+
+[kotlin]
+symbol = ""
+format = '$symbol( $version)'
+
+[nodejs]
+symbol = ""
+format = '$symbol( $version)'
+
+[python]
+symbol = ""
+format = '$symbol( $version)( $virtualenv)'
+
+[rust]
+symbol = ""
+format = '$symbol( $version)'
+
+
+[time]
+disabled = true
+time_format = "%R"
+format = '  $time '
+
+
+[gcloud]
+disabled = true
+format = ' $symbol$project '
+[terraform]
+disabled = true
+[aws]
+disabled = true
+[azure]
+disabled = true
+
+
+[buf]
+disabled = true
+[battery]
+disabled = true
+[c]
+disabled = true
+[cpp]
+disabled = true
+[cmake]
+disabled = true
+[cobol]
+disabled = true
+[conda]
+disabled = true
+[crystal]
+disabled = true
+[daml]
+disabled = true
+[deno]
+disabled = true
+[direnv]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[env_var]
+disabled = true
+[erlang]
+disabled = true
+[fennel]
+disabled = true
+[fossil_branch]
+disabled = true
+[fossil_metrics]
+disabled = true
+[git_state]
+disabled = true
+[git_metrics]
+disabled = true
+[gleam]
+disabled = true
+[guix_shell]
+disabled = true
+[gradle]
+disabled = true
+[haskell]
+disabled = true
+[haxe]
+disabled = true
+[helm]
+disabled = true
+[julia]
+disabled = true
+[kubernetes]
+disabled = true
+[localip]
+disabled = true
+[lua]
+disabled = true
+[meson]
+disabled = true
+[hg_branch]
+disabled = true
+[mise]
+disabled = true
+[mojo]
+disabled = true
+[nats]
+disabled = true
+[netns]
+disabled = true
+[nim]
+disabled = true
+[nix_shell]
+disabled = true
+[ocaml]
+disabled = true
+[odin]
+disabled = true
+[opa]
+disabled = true
+[openstack]
+disabled = true
+[package]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[pijul_channel]
+disabled = true
+[pixi]
+disabled = true
+[pulumi]
+disabled = true
+[purescript]
+disabled = true
+[quarto]
+disabled = true
+[rlang]
+disabled = true
+[raku]
+disabled = true
+[red]
+disabled = true
+[ruby]
+disabled = true
+[scala]
+disabled = true
+[shell]
+disabled = true
+[shlvl]
+disabled = true
+[singularity]
+disabled = true
+[solidity]
+disabled = true
+[spack]
+disabled = true
+[status]
+disabled = true
+[sudo]
+disabled = true
+[swift]
+disabled = true
+[typst]
+disabled = true
+[vagrant]
+disabled = true
+[vlang]
+disabled = true
+[vcsh]
+disabled = true
+[zig]
+disabled = true

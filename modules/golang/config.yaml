@@ -1,0 +1,10 @@
+name: golang
+description: Go Programming language
+dependencies: []
+packages:
+  specific:
+    - name: go
+      manager: brew
+    - name: golang-go
+      manager: apt
+dotfiles: []

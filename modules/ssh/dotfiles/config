@@ -1,0 +1,163 @@
+IdentityAgent ~/.ssh/agent.sock
+
+ForwardAgent yes
+IdentitiesOnly yes
+
+SetEnv TERM=xterm-256color
+
+# Raspberry Pi 4
+Host rpi
+  #Hostname rpi.local
+  Hostname 192.168.1.6
+  User alanv
+  IdentityFile ~/.ssh/local.pub
+  ForwardX11 yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+
+Host terarex
+  Hostname terarex.local
+  #Hostname 192.168.1.115
+  IdentityFile ~/.ssh/local.pub
+  User alan
+  Port 63022
+
+# GCP
+Host gcp gcp_trii gcp-* gcp_trii-*
+  User alan_trii_co
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  CheckHostIP no
+  ForwardAgent yes
+  IdentityFile ~/.ssh/cloud.pub
+  ProxyCommand bash -c "~/.ssh/scripts/gcp_conn.sh %h %p"
+
+Host gcp gcp-*
+  User alanvazquez1999_gmail_com
+
+
+# GIT
+Host git github.com
+  Hostname github.com
+  User git
+  IdentityFile ~/.ssh/git.pub
+  #IdentityFile ~/.ssh/git_2
+
+# TRII
+
+Host gcp_trii gcp_trii-* be-grafana be-prod
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host fix-co-dev
+  Hostname 34.74.53.31
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host cx
+  Hostname 34.73.210.190
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+
+Host fix-pe-dev
+  Hostname 34.23.44.250
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host redis-dev
+  Hostname 34.74.160.102
+  LocalForward 6378 10.13.52.179:6379
+
+Host redis
+  Hostname 35.229.90.137
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+  LocalForward 6381 10.21.178.219:6379
+
+Host redis-2
+  Hostname 35.229.90.137
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+  LocalForward 6382 10.154.245.27:6379
+
+Host redis-3
+  Hostname 35.231.106.176
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+  LocalForward 6383 10.228.70.3:6379
+
+Host fix-cl
+  Hostname 34.74.133.25
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host fix-pe
+  Hostname 34.139.126.32
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host md-cl
+  Hostname 35.237.152.96
+  #LocalForward 8082 4.203.105.71:8082
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host proxy-kallpa
+  Hostname 34.139.184.172
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+  ForwardAgent yes
+
+Host md-pe
+  Hostname 137.31.22.138
+  #User trii
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+  ForwardAgent yes
+  ProxyJump proxy-kallpa
+  LocalForward 8311 161.238.55.7:8311
+
+Host be-prod
+  Hostname 34.138.121.8
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host be-grafana
+  Hostname 35.237.159.253
+
+Host be-dev
+  Hostname 34.139.85.166
+  User alan_trii_co
+  IdentityFile ~/.ssh/cloud.pub
+
+Host fix-cl-dev
+  Hostname 34.73.155.152
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host md-co
+  Hostname 10.192.7.129
+  User trii
+  #  Pass iIxtFFwSIgA6sPlSArAf
+
+Host acva-proxy
+  Hostname 35.231.106.176
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host temp
+  Hostname 35.237.202.145
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+ Host fix-co
+  Hostname 10.192.7.248
+  User trii
+  ProxyJump acva-proxy
+
+Host fix-co-5
+  Hostname 10.192.7.129
+  User trii
+  ProxyJump acva-proxy
+  LocalForward 8303 161.238.55.7:8303

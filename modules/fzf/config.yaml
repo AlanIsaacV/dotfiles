@@ -1,0 +1,9 @@
+name: fzf
+description: General purpose fuzzy finder
+dependencies: []
+packages:
+  common:
+    - fzf
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/fzf.fish
