@@ -1,0 +1,6 @@
+name: jetbains
+description: Import Toolbox scripts to fish path
+dependencies: []
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/jetbrains.fish
