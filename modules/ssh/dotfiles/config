@@ -128,11 +128,16 @@ Host be-grafana
 
 Host be-dev
   Hostname 34.139.85.166
-  User alan_trii_co
+  User alan
   IdentityFile ~/.ssh/cloud.pub
 
 Host fix-cl-dev
   Hostname 34.73.155.152
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
+
+Host md-cl-dev
+  Hostname 34.148.48.98
   User alan
   IdentityFile ~/.ssh/cloud.pub
 
