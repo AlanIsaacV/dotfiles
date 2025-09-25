@@ -2,8 +2,12 @@ name: git
 description: Git config
 dependencies: []
 packages:
-    common:
-        - git
+  common:
+    - git
 dotfiles:
-    - source: dotfiles/gitconfig
-      destination: ~/.gitconfig
+  - source: dotfiles/gitconfig
+    destination: ~/.gitconfig
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/git.fish
+  - source: dotfiles/allowed_signers
+    destination: ~/.ssh/git/allowed_signers
