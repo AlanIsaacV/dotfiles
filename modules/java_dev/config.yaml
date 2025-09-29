@@ -2,7 +2,7 @@ name: java dev
 description: Java enviroment. JDK + jenv + mvn
 dependencies: []
 commands:
-  - command: bash install_mac.sh
+  - command: sh install_mac.sh
     os: brew
 dotfiles:
   - source: dotfiles/config.fish

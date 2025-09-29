@@ -1,0 +1,8 @@
+name: dpkg
+description: Create `.deb` in MacOS
+dependencies: []
+packages:
+    specific:
+        - name: dpkg
+          manager: brew
+dotfiles: []

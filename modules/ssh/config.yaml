@@ -4,5 +4,7 @@ dependencies: []
 dotfiles:
   - source: dotfiles/config
     destination: .ssh/config
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/ssh.fish
   - source: dotfiles/gcp_conn.sh
     destination: .ssh/scripts/gcp_conn.sh

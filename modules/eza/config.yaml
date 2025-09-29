@@ -6,7 +6,7 @@ packages:
     - name: eza
       manager: brew
 commands:
-  - command: install_deb.sh
+  - command: sh ./install_deb.sh
     os: apt
 dotfiles:
   - source: dotfiles/config.fish
