@@ -2,8 +2,9 @@ name: starship
 description: shell prompt
 dependencies: []
 packages:
-  common:
-    - starship
+  specific:
+    - name: starship
+      manager: brew
 commands:
   - command: curl -sS https://starship.rs/install.sh | sh
     os: apt
