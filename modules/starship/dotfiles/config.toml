@@ -60,20 +60,20 @@ style = "bg:color_surface1"
 format = "[ $symbol ]($style)"
 
 [os.symbols]
-Windows = "[](bg:color_surface1 fg:color_blue)"
-Ubuntu = "[](bg:color_surface1 fg:color_peach)"
-Raspbian = "[󰐿](bg:color_surface1 fg:color_red)"
-Mint = "[󰣭](bg:color_surface1 fg:color_green)"
+Windows = "[](bg:color_surface1 fg:color_surface0)"
+Ubuntu = "[](bg:color_surface1 fg:color_surface0)"
+Raspbian = "[󰐿](bg:color_surface1 fg:color_surface0)"
+Mint = "[󰣭](bg:color_surface1 fg:color_surface0)"
 Macos = "[󰀵](bg:color_surface1 fg:color_surface0)"
 Linux = "[󰌽](bg:color_surface1 fg:color_surface0)"
-Fedora = "[󰣛](bg:color_surface1 fg:color_red)"
-Alpine = "[](bg:color_surface1 fg:color_teal)"
-Amazon = "[](bg:color_surface1 fg:color_peach)"
-Android = "[](bg:color_surface1 fg:color_green)"
-Arch = "[󰣇](bg:color_surface1 fg:color_blue)"
-CentOS = "[](bg:color_surface1 fg:color_blue)"
-Debian = "[󰣚](bg:color_surface1 fg:color_red)"
-Redhat = "[󱄛](bg:color_surface1 fg:color_red)"
+Fedora = "[󰣛](bg:color_surface1 fg:color_surface0)"
+Alpine = "[](bg:color_surface1 fg:color_surface0)"
+Amazon = "[](bg:color_surface1 fg:color_surface0)"
+Android = "[](bg:color_surface1 fg:color_surface0)"
+Arch = "[󰣇](bg:color_surface1 fg:color_surface0)"
+CentOS = "[](bg:color_surface1 fg:color_surface0)"
+Debian = "[󰣚](bg:color_surface1 fg:color_surface0)"
+Redhat = "[󱄛](bg:color_surface1 fg:color_surface0)"
 
 
 [username]
@@ -84,7 +84,7 @@ show_always = false
 
 [hostname]
 ssh_symbol = ""
-style = "bg:prev_bg fg:color_surface0"
+style = "bg:prev_bg"
 format = "[$ssh_symbol $hostname]($style)"
 ssh_only = true
 
