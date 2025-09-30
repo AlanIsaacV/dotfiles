@@ -4,6 +4,9 @@ dependencies: []
 packages:
   common:
     - starship
+commands:
+  - command: curl -sS https://starship.rs/install.sh | sh
+    os: apt
 dotfiles:
   - source: dotfiles/config.fish
     destination: ~/.config/fish/conf.d/starship.fish
