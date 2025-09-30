@@ -1,0 +1,7 @@
+name: httpie
+description: HTTP Client
+dependencies: []
+packages:
+    common:
+        - httpie
+dotfiles: []
