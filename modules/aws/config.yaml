@@ -1,0 +1,7 @@
+name: aws
+description: AWS CLI
+dependencies: []
+commands:
+    - command: sh ./install_mac.sh
+      os: brew
+dotfiles: []
