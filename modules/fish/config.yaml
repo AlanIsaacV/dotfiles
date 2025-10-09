@@ -7,3 +7,5 @@ packages:
 dotfiles:
   - source: dotfiles/config.fish
     destination: ~/.config/fish/config.fish
+  - source: dotfiles/take.fish
+    destination: ~/.config/fish/functions/take.fish
