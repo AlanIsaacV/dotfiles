@@ -1,4 +1,4 @@
-alias gl "git pull"
+alias gll "git pull"
 alias gp "git push"
 alias gf "git fetch --all --prune"
 alias gc "git commit"
