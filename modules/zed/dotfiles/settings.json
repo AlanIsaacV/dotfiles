@@ -19,7 +19,7 @@
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "gemini-2.5-pro"
     }
   },
   "disable_ai": false,
@@ -57,8 +57,8 @@
     "metrics": false
   },
   "base_keymap": "VSCode",
-  "buffer_font_family": "FiraCode Nerd Font",
-  "ui_font_family": "FiraCode Nerd Font",
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "ui_font_family": "FiraCode Nerd Font Mono",
   "ui_font_size": 11.0,
   "buffer_font_size": 10.0,
   "theme": {
@@ -75,7 +75,20 @@
   },
   "file_scan_exclusions": [".git/", ".venv", "**/._*", ".DS_Store"],
   "format_on_save": "on",
-  "languages": { "Python": { "language_servers": ["basedpyright"] } },
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        }
+      ]
+    }
+  },
   "lsp": {
     "basedpyright": {
       "settings": {
