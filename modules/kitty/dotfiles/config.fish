@@ -1,0 +1,6 @@
+alias k "kitten"
+alias kd "kitten diff"
+alias ks "kitten ssh"
+alias kn "kitten notify"
+alias kc "kitten clipboard"
+alias icat "kitten icat"

@@ -11,3 +11,5 @@ dotfiles:
     destination: ~/.config/kitty/current-theme.conf
   - source: dotfiles/diff.conf
     destination: ~/.config/kitty/diff.conf
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/kitty.fish
