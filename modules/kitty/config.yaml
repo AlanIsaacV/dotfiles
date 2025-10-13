@@ -1,0 +1,13 @@
+name: kitty
+description: Terminal emulator
+dependencies: []
+commands:
+  - command: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    os: ""
+dotfiles:
+  - source: dotfiles/kitty.conf
+    destination: ~/.config/kitty/kitty.conf
+  - source: dotfiles/current-theme.conf
+    destination: ~/.config/kitty/current-theme.conf
+  - source: dotfiles/diff.conf
+    destination: ~/.config/kitty/diff.conf
