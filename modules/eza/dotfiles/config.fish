@@ -1,4 +1,4 @@
-alias l="eza --long --header --group --all --group-directories-first --icons --git"
+alias l="eza --long --header --group --all --group-directories-first --icons --git --hyperlink"
 alias lt="l --tree"
 
 set IGNORED_PATTERNS "-I \"__pycache__|.git|node_modules|.idea\""
