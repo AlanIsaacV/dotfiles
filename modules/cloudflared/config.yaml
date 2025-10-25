@@ -1,0 +1,7 @@
+name: cloudflared
+description: Tunnel Client
+dependencies: []
+packages:
+    common:
+        - cloudflared
+dotfiles: []
