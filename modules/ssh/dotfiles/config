@@ -17,9 +17,9 @@ Host rpi
 
 Host terarex
   Hostname terarex.local
-  #Hostname 192.168.1.115
   IdentityFile ~/.ssh/local.pub
   User alan
+  #User Ugreenius
   Port 63022
 
 # GCP
@@ -65,10 +65,6 @@ Host fix-pe-dev
   User alan
   IdentityFile ~/.ssh/cloud.pub
 
-Host redis-dev
-  Hostname 34.74.160.102
-  LocalForward 6378 10.13.52.179:6379
-
 Host redis
   Hostname 35.229.90.137
   User alan
@@ -80,12 +76,6 @@ Host redis-2
   User alan
   IdentityFile ~/.ssh/cloud.pub
   LocalForward 6382 10.154.245.27:6379
-
-Host redis-3
-  Hostname 35.231.106.176
-  User alan
-  IdentityFile ~/.ssh/cloud.pub
-  LocalForward 6383 10.228.70.3:6379
 
 Host fix-cl
   Hostname 34.74.133.25
@@ -130,6 +120,7 @@ Host be-dev
   Hostname 34.139.85.166
   User alan
   IdentityFile ~/.ssh/cloud.pub
+  LocalForward 6378 10.13.52.179:6379
 
 Host fix-cl-dev
   Hostname 34.73.155.152
@@ -150,6 +141,7 @@ Host acva-proxy
   Hostname 35.231.106.176
   User alan
   IdentityFile ~/.ssh/cloud.pub
+  LocalForward 8080 10.192.7.104:4400
 
 Host temp
   Hostname 35.237.202.145
@@ -163,6 +155,7 @@ Host temp
 
 Host fix-co-5
   Hostname 10.192.7.129
-  User trii
+  User alan
+  IdentityFile ~/.ssh/cloud.pub
   ProxyJump acva-proxy
-  LocalForward 8303 161.238.55.7:8303
+  LocalForward 8302 161.238.55.7:8302
