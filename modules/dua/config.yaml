@@ -1,0 +1,7 @@
+name: dua
+description: Disk Usage Analyzer
+dependencies: []
+packages:
+    common:
+        - dua-cli
+dotfiles: []
