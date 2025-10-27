@@ -1,0 +1,11 @@
+name: btop
+description: Resource monitor
+dependencies: []
+packages:
+  common:
+    - btop
+dotfiles:
+  - source: dotfiles/btop.conf
+    destination: ~/.config/btop/btop.conf
+  - source: dotfiles/catppuccin_frappe.theme
+    destination: ~/.config/btop/themes/catppuccin_frappe.theme
