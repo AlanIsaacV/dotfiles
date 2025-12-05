@@ -1,0 +1,7 @@
+name: atlas-go
+description: DB migration engine
+dependencies: []
+commands:
+    - command: curl -sSf https://atlasgo.sh | sh
+      os: ""
+dotfiles: []
