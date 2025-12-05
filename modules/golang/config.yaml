@@ -7,4 +7,7 @@ packages:
       manager: brew
     - name: golang-go
       manager: apt
-dotfiles: []
+dotfiles:
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/golang.fish
+
