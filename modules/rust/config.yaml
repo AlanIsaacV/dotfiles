@@ -1,0 +1,7 @@
+name: rust
+description: Programming language
+dependencies: []
+commands:
+    - command: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      os: ""
+dotfiles: []
