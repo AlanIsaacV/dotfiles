@@ -9,3 +9,5 @@ dotfiles:
     destination: ~/.config/fish/config.fish
   - source: dotfiles/take.fish
     destination: ~/.config/fish/functions/take.fish
+  - source: dotfiles/dotenv.fish
+    destination: ~/.config/fish/functions/dotenv.fish
