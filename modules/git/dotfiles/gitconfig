@@ -32,7 +32,6 @@
 
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-  allowedSignersFile = ~/.ssh/git/allowed_signers
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
