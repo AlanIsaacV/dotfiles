@@ -13,3 +13,5 @@ dotfiles:
     destination: ~/.config/fish/functions/dotenv.fish
   - source: dotfiles/b64d.fish
     destination: ~/.config/fish/functions/b64d.fish
+  - source: dotfiles/clipdiff.fish
+    destination: ~/.config/fish/functions/clipdiff.fish
