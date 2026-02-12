@@ -8,9 +8,21 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "vim_mode": false,
-  "features": {
-    "edit_prediction_provider": "copilot"
+  "edit_predictions": {
+    "provider": "copilot"
   },
+  "git_panel": {
+    "sort_by_path": true
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "context_servers": {},
+  "show_wrap_guides": true,
+  "wrap_guides": [100],
+
   "agent": {
     "default_profile": "write",
     "single_file_review": false,
@@ -19,7 +31,7 @@
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gemini-2.5-pro"
+      "model": "claude-sonnet-4.5"
     }
   },
   "disable_ai": false,
@@ -63,7 +75,7 @@
   "buffer_font_size": 10.0,
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Frappé"
   },
   "terminal": {
@@ -78,15 +90,7 @@
   "languages": {
     "Python": {
       "language_servers": ["basedpyright"],
-      "format_on_save": "on",
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        }
-      ]
+      "format_on_save": "on"
     }
   },
   "lsp": {
@@ -97,6 +101,9 @@
           "typeCheckingMode": "standard"
         }
       }
+    },
+    "gopls": {
+      "initialization_options": { "analyses": { "mapsloop": false } }
     }
   }
 }
