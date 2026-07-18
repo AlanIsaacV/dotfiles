@@ -1,0 +1,11 @@
+name: lazydocker
+description: Docker TUI
+dependencies: []
+packages:
+  specific:
+    - name: lazydocker
+      manager: brew
+commands:
+  - command: eget jesseduffield/lazydocker
+    os: apt
+dotfiles: []
