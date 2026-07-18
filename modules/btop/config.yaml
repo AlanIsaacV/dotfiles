@@ -2,8 +2,12 @@ name: btop
 description: Resource monitor
 dependencies: []
 packages:
-  common:
-    - btop
+  specific:
+    - name: btop
+      manager: brew
+commands:
+  - command: eget aristocratos/btop
+    os: apt
 dotfiles:
   - source: dotfiles/btop.conf
     destination: ~/.config/btop/btop.conf

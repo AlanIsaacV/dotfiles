@@ -2,6 +2,10 @@ name: ripgrep
 description: Recurive search tool
 dependencies: []
 packages:
-    common:
-        - ripgrep
+  specific:
+    - name: ripgrep
+      manager: brew
+commands:
+  - command: eget BurntSushi/ripgrep && mv ~/.local/bin/ripgrep ~/.local/bin/rg
+    os: apt
 dotfiles: []

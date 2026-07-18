@@ -6,7 +6,7 @@ packages:
     - name: starship
       manager: brew
 commands:
-  - command: curl -sS https://starship.rs/install.sh | sh
+  - command: eget starship/starship
     os: apt
 dotfiles:
   - source: dotfiles/config.fish

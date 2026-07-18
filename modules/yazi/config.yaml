@@ -5,6 +5,9 @@ packages:
   specific:
     - name: yazi
       manager: brew
+commands:
+  - command: eget sxyazi/yazi
+    os: apt
 dotfiles:
   - source: dotfiles/function.fish
     destination: ~/.config/fish/functions/y.fish

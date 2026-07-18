@@ -2,8 +2,12 @@ name: fzf
 description: General purpose fuzzy finder
 dependencies: []
 packages:
-  common:
-    - fzf
+  specific:
+    - name: fzf
+      manager: brew
+commands:
+  - command: eget junegunn/fzf
+    os: apt
 dotfiles:
   - source: dotfiles/config.fish
     destination: ~/.config/fish/conf.d/fzf.fish

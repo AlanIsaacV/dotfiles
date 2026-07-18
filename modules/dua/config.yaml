@@ -2,6 +2,10 @@ name: dua
 description: Disk Usage Analyzer
 dependencies: []
 packages:
-    common:
-        - dua-cli
+  specific:
+    - name: dua-cli
+      manager: brew
+commands:
+  - command: eget Byron/dua-cli
+    os: apt
 dotfiles: []

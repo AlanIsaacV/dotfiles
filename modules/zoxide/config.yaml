@@ -6,7 +6,7 @@ packages:
     - name: zoxide
       manager: brew
 commands:
-  - command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  - command: eget ajeetdsouza/zoxide
     os: apt
 dotfiles:
   - source: dotfiles/config.fish
