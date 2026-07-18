@@ -1,0 +1,6 @@
+name: nvim
+description: Neovim configuration with local and remote profiles
+dependencies: []
+dotfiles:
+  - source: dotfiles/nvim
+    destination: ~/.config/nvim
