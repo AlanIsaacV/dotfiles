@@ -1,0 +1,11 @@
+name: eget
+description: Github pre-built binary installation
+dependencies: []
+packages:
+  - command: curl -o eget.sh https://zyedidia.github.io/eget.sh && bash eget.sh && mv eget ~/.local/bin
+    os: brew
+  - command: curl -o eget.sh https://zyedidia.github.io/eget.sh && bash eget.sh && mv eget ~/.local/bin
+    os: apt
+dotfiles:
+  - source: dotfiles/eget.toml
+    destination: ~/.eget.toml
