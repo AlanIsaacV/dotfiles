@@ -1,0 +1,14 @@
+name: hunk
+description: git diff for IA Agents
+dependencies: []
+packages:
+  specific:
+    - name: hunk
+      manager: brew
+commands:
+  - command: eget modem-dev/hunk
+    os: apt
+dotfiles: 
+  - source: dotfiles/config.toml
+    destination: ~/.config/hunk/config.toml
+
