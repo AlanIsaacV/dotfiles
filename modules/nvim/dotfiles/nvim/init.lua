@@ -32,3 +32,4 @@ require("lazy").setup(require("plugins").spec(profile), {
   checker = { enabled = false },
   change_detection = { notify = false },
 })
+

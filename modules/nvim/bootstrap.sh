@@ -38,7 +38,7 @@ if [ "${1:-}" = "--install-lsp" ]; then
   NVIM_BOOTSTRAP=1 nvim --headless \
     '+lua if vim.g.dotfiles_nvim_profile ~= "local" then vim.api.nvim_err_writeln("Neovim local profile is not loaded; link the module first"); vim.cmd("cquit 1") end' \
     '+lua if vim.fn.exists(":MasonInstall") ~= 2 then vim.api.nvim_err_writeln("Mason is unavailable; check git and network access"); vim.cmd("cquit 1") end' \
-    '+MasonInstall basedpyright gopls rust_analyzer' +qa
+    '+MasonInstall basedpyright gopls rust-analyzer' +qa
 else
   NVIM_BOOTSTRAP=1 nvim --headless \
     '+lua if vim.g.dotfiles_nvim_profile == nil then vim.api.nvim_err_writeln("Neovim config is not loaded; link the module first"); vim.cmd("cquit 1") end' \

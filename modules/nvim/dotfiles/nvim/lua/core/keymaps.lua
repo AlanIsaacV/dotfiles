@@ -22,11 +22,20 @@ function M.setup(profile)
   map("n", "<Esc>", "<cmd>nohlsearch<cr>", "Clear search highlight")
 
   map("n", "<leader>e", plugin_or_warn("neo-tree.command", function(command)
-    command.execute({ toggle = true })
-  end), "Toggle file tree")
+    command.execute({})
+  end), "Open file tree")
+  map("n", "<leader>E", plugin_or_warn("neo-tree.command", function(command)
+    command.execute({action="close"})
+  end), "Close file tree")
+
+  map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', "Prev Tab", { noremap = true, silent = true })
+  map('n', '<A-.>', '<Cmd>BufferNext<CR>', "Next Tab", { noremap = true, silent = true })
+  map("n", "<A-c>", "<Cmd>BufferClose<CR>", "Close Tab", { noremap = true, silent = true })
+
   map("n", "<leader>ff", plugin_or_warn("fzf-lua", function(fzf)
     fzf.files()
   end), "Find files")
+
   map("n", "<leader>fg", plugin_or_warn("fzf-lua", function(fzf)
     fzf.live_grep()
   end), "Find text")
@@ -42,9 +51,11 @@ function M.setup(profile)
       vim.notify("Diffview is not installed yet", vim.log.levels.WARN)
     end
   end, "Review Git changes")
+
   map("n", "<leader>cf", plugin_or_warn("conform", function(conform)
     conform.format({ async = true, lsp_format = "fallback" })
   end), "Format buffer")
+
 end
 
 return M

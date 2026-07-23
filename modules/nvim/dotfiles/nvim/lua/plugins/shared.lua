@@ -6,8 +6,21 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({ flavour = "frappe" })
+      require("catppuccin").setup({
+        flavour = "frappe",
+	transparent_background = true,
+	auto_integrations = true,
+	fzf = true,
+	neotree = true,
+      })
       vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+       require('lualine').setup()
     end,
   },
   {
@@ -20,6 +33,19 @@ return {
         { "<leader>g", group = "Git" },
         { "<leader>c", group = "Code" },
       },
+    },
+  },
+  {'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
     },
   },
   { "nvim-lua/plenary.nvim", lazy = true },
@@ -35,7 +61,11 @@ return {
       enable_diagnostics = false,
       filesystem = {
         follow_current_file = { enabled = true },
-        filtered_items = { hide_dotfiles = false },
+        filtered_items = { 
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_ignored = false,
+        },
       },
       window = { position = "left", width = 34 },
     },
