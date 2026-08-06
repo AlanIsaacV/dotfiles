@@ -46,4 +46,16 @@ return {
       default_format_opts = { lsp_format = "fallback" },
     },
   },
+{
+  "NeogitOrg/neogit",
+  lazy = true,
+  dependencies = {
+    "sindrets/diffview.nvim",        -- optional
+    "ibhagwan/fzf-lua",              -- optional
+  },
+  cmd = "Neogit",
+  keys = {
+    { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+  }
+}
 }

@@ -4,3 +4,6 @@ dependencies: []
 dotfiles:
   - source: dotfiles/nvim
     destination: ~/.config/nvim
+  - source: dotfiles/config.fish
+    destination: ~/.config/fish/conf.d/nvim.fish
+
