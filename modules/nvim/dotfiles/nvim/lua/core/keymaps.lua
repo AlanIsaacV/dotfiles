@@ -40,6 +40,10 @@ function M.setup(profile)
     fzf.live_grep()
   end), "Find text")
 
+  map("n", "grr", plugin_or_warn("fzf-lua", function(fzf)
+    fzf.lsp_references()
+  end), "LSP References")
+
   if profile ~= "local" then
     return
   end

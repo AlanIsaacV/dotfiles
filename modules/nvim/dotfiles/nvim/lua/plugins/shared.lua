@@ -12,6 +12,9 @@ return {
 	auto_integrations = true,
 	fzf = true,
 	neotree = true,
+
+	float = { transparent = true },
+	dim_inactive = { enabled = false },
       })
       vim.cmd.colorscheme("catppuccin")
     end,
@@ -73,6 +76,29 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = { winopts = { preview = { default = "builtin" } } },
-  },
+    opts = {
+      winopts = { 
+        preview = { 
+          default = "builtin",
+	  --hidden = "nohidden",
+          --layout = "horizontal",
+	  --functionhorizontal = "right:70%",
+          --wrap = "wrap",
+        },
+	files = {
+          hidden = true,
+          cmd = "fd --type f --hidden --exclude .git",
+        },
+	grep = {
+          hidden = true,
+          rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --g '! .git'",
+        },
+        lsp = {
+          async_or_timeout = 5000,
+          includeDeclaration = false,
+          symbols = { symbol_style = 1 },
+        }
+      },
+    },
+  }
 }

@@ -138,8 +138,8 @@ symbol = "󰍛"
 format = " $symbol ${ram} "
 disabled = true
 
-
 [docker_context]
+disabled = true
 symbol = ""
 format = '$symbol( $context)'
 
