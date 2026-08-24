@@ -1,11 +1,11 @@
 local M = {}
 
 function M.resolve(context)
-  if context.force == "local" or context.force == "remote" then
+  if context.force == "dev" or context.force == "remote" then
     return context.force
   end
 
-  return context.is_macos and not context.is_ssh and "local" or "remote"
+  return context.is_macos and not context.is_ssh and "dev" or "remote"
 end
 
 function M.current()

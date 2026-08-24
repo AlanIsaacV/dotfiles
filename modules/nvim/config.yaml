@@ -1,6 +1,14 @@
 name: nvim
 description: Neovim configuration with local and remote profiles
 dependencies: []
+packages:
+  specific:
+    # `tree-sitter` is the library formula and ships no binary; the CLI that
+    # nvim-treesitter shells out to is `tree-sitter-cli`. brew-only is deliberate:
+    # `manager` is what dotcli matches on, so this lands only on macOS, which is
+    # where the dev profile — and therefore treesitter — runs.
+    - name: tree-sitter-cli
+      manager: brew
 dotfiles:
   - source: dotfiles/nvim
     destination: ~/.config/nvim

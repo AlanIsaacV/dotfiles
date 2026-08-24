@@ -1,11 +1,6 @@
-local M = {}
-
-function M.spec(profile)
-  local specs = vim.deepcopy(require("plugins.shared"))
-  if profile == "local" then
-    vim.list_extend(specs, require("plugins.local"))
-  end
-  return specs
-end
-
-return M
+-- lazy honours `cond` on an import before it reads the directory, so the dev specs are
+-- never even parsed under the remote profile.
+return {
+  { import = "plugins.shared" },
+  { import = "plugins.dev", cond = vim.g.dotfiles_nvim_profile == "dev" },
+}

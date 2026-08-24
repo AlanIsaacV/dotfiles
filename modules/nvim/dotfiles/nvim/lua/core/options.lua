@@ -14,6 +14,7 @@ local options = {
   clipboard = "unnamedplus",
   undofile = true,
   termguicolors = true,
+  winborder = "rounded",
 }
 
 for name, value in pairs(options) do
