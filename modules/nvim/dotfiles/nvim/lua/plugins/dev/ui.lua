@@ -81,7 +81,21 @@ return {
       -- `vim._core` is private and Neovim promises nothing about it, so a release that
       -- moves or renames it must not take the rest of this spec down with it.
       pcall(function()
-        require("vim._core.ui2").enable()
+        -- The second thing `cmdheight = 0` costs, after `showmode`: every ordinary message is
+        -- drawn in ui2's `cmd` window, which is opened `relative = "laststatus"` at `row = 1` --
+        -- lualine's row. So `:w` blanked the statusline for a few seconds behind
+        -- `"file" 163L, 7898B written`. ui2 already owns a second window for exactly this case,
+        -- `msg`: anchored bottom-right, gone on its own after 4 s, nothing else moved.
+        --
+        -- `progress` is the key that reaches a write, and it is not obvious: a write used to
+        -- carry its own `bufwrite` kind and no longer does (`:help news`, "msg_show.bufwrite ...
+        -- are now msg_show.progress events"). Measured on 0.12.5 through a `vim.ui_attach`
+        -- listener, `:write` emits `kind = "progress"` with an empty `trigger`, and ui2 resolves
+        -- a destination as targets[trigger] or targets[kind] or target -- so the kind is the only
+        -- handle there is. The cost is that the language server's own progress reports share that
+        -- kind and follow the write into the same corner; `trigger` is empty for both, so there
+        -- is no way to route one without the other.
+        require("vim._core.ui2").enable({ msg = { targets = { progress = "msg" } } })
       end)
     end,
     -- Empty on purpose: a centred float for `:`, `/` and `?` left at the bottom of the
