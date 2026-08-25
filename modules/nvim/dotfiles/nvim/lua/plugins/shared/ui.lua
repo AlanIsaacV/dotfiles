@@ -55,7 +55,11 @@ return {
     keys = {
       { "<A-,>", "<Cmd>BufferPrevious<CR>", desc = "Prev Tab" },
       { "<A-.>", "<Cmd>BufferNext<CR>", desc = "Next Tab" },
-      { "<A-c>", "<Cmd>BufferClose<CR>", desc = "Close Tab" },
+      -- Not `:BufferClose` directly: on the last tab barbar's close path runs `:enew` so the
+      -- window survives and then labels that unnamed listed buffer `[buffer N]`, a tab that
+      -- cannot be closed away. core.tabs fills the window with the landing view first and
+      -- delegates every other case straight back to `:BufferClose`.
+      { "<A-c>", function() require("core.tabs").close_current() end, desc = "Close Tab" },
     },
     init = function()
       vim.g.barbar_auto_setup = false

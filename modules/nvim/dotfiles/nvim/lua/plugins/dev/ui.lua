@@ -17,6 +17,36 @@ return {
       bigfile = {},
       words = {},
       quickfile = {},
+      -- Also the landing view core.tabs falls back on: it is the one buffer barbar draws no
+      -- tab for (`buftype = "nofile"`, `buflisted = false`, `filetype = "snacks_dashboard"`),
+      -- which is what keeps the tabline empty on `nvim .` and after closing the last tab.
+      dashboard = {
+        preset = {
+          -- The three things there is anything to do from an empty editor, bound to the
+          -- letters their leader mappings already use. Every one of them requires its
+          -- module rather than running a command, because none of these plugins is loaded
+          -- when this view is on screen: `:Neotree` does not exist until neo-tree loads
+          -- (measured -- `nvim <file>` then `<A-c>` onto the dashboard leaves
+          -- `exists(':Neotree') == 0` and the command raises E492), and going through
+          -- `Snacks.dashboard.pick` would send it looking for a picker when this config has
+          -- exactly one and it is not snacks'.
+          keys = {
+            { icon = " ", key = "f", desc = "Find files", action = function() require("fzf-lua").files() end },
+            { icon = " ", key = "g", desc = "Find text", action = function() require("fzf-lua").live_grep() end },
+            { icon = " ", key = "e", desc = "File tree", action = function() require("neo-tree.command").execute({}) end },
+          },
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          -- `cwd = true` filters `v:oldfiles` down to this project, so the list is what was
+          -- open here last time rather than the last thing edited anywhere on the machine.
+          { icon = " ", title = "Recent files", section = "recent_files", cwd = true, limit = 8, indent = 2, padding = 1 },
+        },
+        -- Upstream's default sections also carry `startup`, the plugin count and load time.
+        -- Left out on purpose, along with a git status section: neither is a thing to act on
+        -- from here, and this view exists to get to a file.
+      },
     },
     -- Comment out this whole `keys` table to drop the jump maps; the highlighting of the
     -- other occurrences comes from `words` in `opts` above and stays either way.

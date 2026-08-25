@@ -14,6 +14,7 @@ local function map_absent_plugin_warnings()
     { "<leader>E", "Close file tree" },
     { "<leader>ff", "Find files" },
     { "<leader>fg", "Find text" },
+    { "<leader>fj", "Find jumps" },
   }
   for _, fallback in ipairs(fallbacks) do
     vim.keymap.set("n", fallback[1], function()
@@ -185,4 +186,14 @@ require("lazy").setup(require("plugins"), {
   checker = { enabled = false },
   change_detection = { notify = false },
 })
+
+-- Deliberately here and not up with core.options and core.keymaps: every path above this
+-- line returns without plugins, and preview tabs only make sense where a tabline shows
+-- which buffers exist. On the built-in editor the same autocmds would silently `:bdelete`
+-- the file just read with nothing on screen to say so, which is a worse plain editor than
+-- vim's own buffer list. The landing view and the `<A-c>` wrapper need barbar, neo-tree and
+-- snacks for the same reason. After lazy.setup rather than before, so the profile's plugins
+-- are resolved before the module reads them; the startup work it registers is an autocmd
+-- that fires later either way.
+require("core.tabs")
 

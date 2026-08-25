@@ -6,6 +6,7 @@ return {
     keys = {
       { "<leader>ff", function() require("fzf-lua").files() end, desc = "Find files" },
       { "<leader>fg", function() require("fzf-lua").live_grep() end, desc = "Find text" },
+      { "<leader>fj", function() require("fzf-lua").jumps() end, desc = "Find jumps" },
       { "grr", function() require("fzf-lua").lsp_references() end, desc = "LSP References" },
     },
     opts = {
