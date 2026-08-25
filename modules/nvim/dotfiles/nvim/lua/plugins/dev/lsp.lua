@@ -15,10 +15,10 @@ return {
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     lazy = true,
-    -- ensure_installed consequently runs on the first open of a registered filetype
-    -- instead of at startup: a fresh machine installs its servers on the first Go,
+    -- ensure_installed consequently runs on the first open of a filetype that declares a
+    -- server instead of at startup: a fresh machine installs its servers on the first Go,
     -- Python or Rust file, not on the first Neovim.
-    ft = lang.filetypes(),
+    ft = lang.server_filetypes(),
     opts = { ensure_installed = lang.server_names() },
   },
   {
@@ -41,7 +41,9 @@ return {
     -- wiring alive: without this link completion silently stops offering LSP items.
     dependencies = { "saghen/blink.cmp" },
     lazy = true,
-    ft = lang.filetypes(),
+    -- Only the filetypes that declare a server: a JSON buffer has nothing here to attach and
+    -- loading this pair for it costs a startup's worth of work for no client.
+    ft = lang.server_filetypes(),
     config = function()
       vim.diagnostic.config({
         signs = true,

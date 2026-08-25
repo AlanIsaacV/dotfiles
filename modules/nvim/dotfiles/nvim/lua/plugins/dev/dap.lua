@@ -99,9 +99,10 @@ return {
     -- require hook would make this spec's load order an accident rather than a statement.
     dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
     lazy = true,
-    -- Same trigger as mason-lspconfig, for the same reason: a fresh machine installs its
-    -- adapters on the first file of a registered language, not on the first Neovim.
-    ft = lang.filetypes(),
+    -- The filetypes that declare a debugger, for the reason the local at the top of this file
+    -- gives, and a fresh machine installs its adapters on the first file of one of them
+    -- rather than on the first Neovim.
+    ft = debug_filetypes,
     -- This plugin is here to install binaries and for nothing else. Its `handlers` key is
     -- what makes it register adapters and configurations of its own shape, and omitting the
     -- key entirely is not the same as passing an empty table: setup only calls

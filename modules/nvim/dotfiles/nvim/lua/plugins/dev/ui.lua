@@ -67,6 +67,17 @@ return {
     -- dev profile: enabling ui2 from the shared options file would turn it on under the
     -- remote profile too.
     init = function()
+      -- Before the `require` below, not merely before `enable()`: ui2 captures
+      -- `vim.o.cmdheight` into a module field the moment it is first required, and from
+      -- then on refreshes it only from an `OptionSet` autocmd. tiny-cmdline drops
+      -- `cmdheight` to 0 on its own with `noautocmd`, which is precisely what suppresses
+      -- that event, so ui2 would keep believing the configured height is 1 -- and a
+      -- cached 1 is what leaves its cmdline float unhidden on a screen with no cmdline
+      -- row left. That float is `relative = "laststatus"` at `row = 1`, so it lands on
+      -- lualine's row and `showmode` gets written into it: the statusline disappears
+      -- behind `-- INSERT --` from the first `:` onwards. Starting at 0 means the cached
+      -- value is right from the outset and tiny-cmdline's own lowering is a no-op.
+      vim.o.cmdheight = 0
       -- `vim._core` is private and Neovim promises nothing about it, so a release that
       -- moves or renames it must not take the rest of this spec down with it.
       pcall(function()

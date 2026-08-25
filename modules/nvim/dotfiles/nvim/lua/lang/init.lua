@@ -73,6 +73,23 @@ function M.server_names()
   return names
 end
 
+function M.server_filetypes()
+  local filetypes = {}
+  -- The same truthiness test M.servers() applies, so this list is exactly the filetypes the
+  -- LSP config loop will enable a server for. Deliberately not M.filetypes(): a language may
+  -- declare a formatter and no server -- json does -- and handing lazy the wider list would
+  -- load nvim-lspconfig and mason-lspconfig on a buffer that has nothing to attach.
+  for filetype, spec in pairs(M.all()) do
+    if spec.server then
+      filetypes[#filetypes + 1] = filetype
+    end
+  end
+  -- Sorted for the reason M.filetypes() is: this is handed straight to lazy's `ft`, and an
+  -- unordered pairs() walk reorders the resolved spec between runs.
+  table.sort(filetypes)
+  return filetypes
+end
+
 function M.debug_adapters()
   local adapters = {}
   for _, spec in pairs(M.all()) do
