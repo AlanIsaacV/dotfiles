@@ -1,0 +1,6 @@
+name: zed
+description: Code Editor
+dependencies: []
+dotfiles:
+  - source: dotfiles/settings.json
+    destination: ~/.config/zed/settings.json
